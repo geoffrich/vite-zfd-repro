@@ -1,6 +1,15 @@
-import javascriptLogo from './javascript.svg'
+import javascriptLogo from "./javascript.svg";
+
+import { zfd } from "zod-form-data";
+
+const schema = zfd.formData({
+  name: zfd.text()
+});
 
 export function render() {
+  const params = schema.parse(new URLSearchParams("name=test"));
+  console.log(params);
+
   const html = `
     <div>
       <a href="https://vitejs.dev" target="_blank">
@@ -17,6 +26,6 @@ export function render() {
         Click on the Vite logo to learn more
       </p>
     </div>
-  `
-  return { html }
+  `;
+  return { html };
 }
